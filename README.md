@@ -95,14 +95,6 @@ Other than that, I've:
 
 Really, you should just clone Mathias' dotfiles and make them your own.
 
-### Install native apps with `brew cask`
-
-You could also install native apps with [`brew cask`](https://github.com/phinze/homebrew-cask):
-
-```bash
-brew bundle ~/Caskfile
-```
-
 ## Feedback
 
 Suggestions/improvements
