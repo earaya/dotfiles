@@ -44,6 +44,7 @@ stay synchronized immediately:
 - `home/.config/starship.toml` maps to `~/.config/starship.toml`
 - `home/.config/ghostty/config.ghostty` maps to `~/.config/ghostty/config.ghostty`
 - `home/.ssh/config` maps to `~/.ssh/config`
+- `home/.config/zsh/aliases.zsh` maps to `~/.config/zsh/aliases.zsh`
 
 Homebrew and macOS preferences cannot be symlinked. Their tracked declarations
 are the source of truth and must be changed before or alongside the live state.
@@ -78,6 +79,12 @@ relative to `$HOME`, then rerun `./bootstrap.sh`. Example:
 ```text
 home/.gitconfig -> ~/.gitconfig
 ```
+
+### Add a shell alias
+
+Keep interactive shortcuts in `home/.config/zsh/aliases.zsh` rather than
+growing `.zshrc`. Prefer new shorthand names over replacing standard commands;
+for example, `la` runs `eza -la` while `ls` retains its normal behavior.
 
 ### Change a macOS or application preference
 

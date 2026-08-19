@@ -7,6 +7,7 @@ brew "starship"
 brew "uv"
 brew "zsh-autosuggestions"
 brew "zsh-history-substring-search"
+brew "zsh-syntax-highlighting"
 
 cask "1password"
 cask "ghostty"

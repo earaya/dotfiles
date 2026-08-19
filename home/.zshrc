@@ -43,6 +43,10 @@ source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # Muted Solarized-style suggestion color. Press Right Arrow or End to accept.
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
+# ---- Aliases ----------------------------------------------------------------
+
+[[ -r "$HOME/.config/zsh/aliases.zsh" ]] && source "$HOME/.config/zsh/aliases.zsh"
+
 # Use VS Code for commands that respect standard editor environment variables.
 if command -v code >/dev/null 2>&1; then
   export EDITOR='code --wait'
@@ -52,7 +56,17 @@ fi
 # Keep machine- or work-specific settings out of Git.
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
-# ---- Prompt (must be last) --------------------------------------------------
+# ---- Prompt -----------------------------------------------------------------
 if [[ "$TERM" != dumb ]] && command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
+
+# ---- Syntax highlighting (must be last) -------------------------------------
+
+syntax_highlighting="$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ -r "$syntax_highlighting" ]]; then
+  source "$syntax_highlighting"
+  ZSH_HIGHLIGHT_STYLES[command]='fg=green'
+  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+fi
+unset syntax_highlighting
