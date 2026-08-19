@@ -66,7 +66,10 @@ fi
 syntax_highlighting="$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if [[ -r "$syntax_highlighting" ]]; then
   source "$syntax_highlighting"
-  ZSH_HIGHLIGHT_STYLES[command]='fg=green'
-  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+  # Bright, bold colors remain visible against Ghostty's dark background.
+  ZSH_HIGHLIGHT_STYLES[arg0]='fg=10,bold'
+  ZSH_HIGHLIGHT_STYLES[command]='fg=10,bold'
+  ZSH_HIGHLIGHT_STYLES[precommand]='fg=10,bold,underline'
+  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=9,bold'
 fi
 unset syntax_highlighting
