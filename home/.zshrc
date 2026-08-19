@@ -1,0 +1,52 @@
+# ---- Completion -------------------------------------------------------------
+
+autoload -Uz compinit
+zmodload -i zsh/complist
+compinit
+
+# Tab completion: case-insensitive matching and a navigable selection menu.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*:descriptions' format '%F{blue}-- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}no matches found%f'
+
+# ---- History ----------------------------------------------------------------
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Share history across open Ghostty tabs/windows and write it incrementally.
+setopt append_history
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# ---- Fish-like history search ------------------------------------------------
+
+source "$(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
+# Type any fragment, then use Up/Down to find matching history entries.
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+
+# ---- Inline suggestions ------------------------------------------------------
+
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Muted Solarized-style suggestion color. Press Right Arrow or End to accept.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# Keep machine- or work-specific settings out of Git.
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# ---- Prompt (must be last) --------------------------------------------------
+if [[ "$TERM" != dumb ]] && command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi

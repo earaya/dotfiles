@@ -1,0 +1,10 @@
+# Theme and typography
+font-family = "JetBrains Mono"
+font-size = 14
+
+# Clean interactive-shell affordances
+cursor-style = bar
+cursor-click-to-move = true
+
+# Keep normal close behavior friendly for active shells.
+confirm-close-surface = false

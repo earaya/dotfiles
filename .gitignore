@@ -1,0 +1,5 @@
+.DS_Store
+*.local
+.zcompdump*
+.zsh_history
+home/.ssh/id_*
