@@ -1,6 +1,6 @@
 # Dotfiles
 
-Declarative macOS setup for Homebrew packages, Zsh, Starship, Ghostty, and Rectangle.
+Declarative macOS setup for Homebrew packages, Zsh, Starship, Ghostty, Rectangle, and Visual Studio Code.
 
 ## Apply the setup
 
@@ -84,6 +84,20 @@ home/.gitconfig -> ~/.gitconfig
 Update the appropriate idempotent script under `macos/`, run that script, and
 verify the application behavior. Keep only deliberate settings; do not commit a
 complete preferences plist containing generated state.
+
+### Default editor
+
+Visual Studio Code is installed from `Brewfile`. Use its `code` command to
+open files or directories from the terminal without changing macOS file
+associations:
+
+```sh
+code ~/.zshrc
+code .
+```
+
+The shell also exports `EDITOR='code --wait'` and `VISUAL` for terminal
+programs that invoke an editor and need to wait until editing is complete.
 
 ### GitHub SSH identities
 

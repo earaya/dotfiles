@@ -43,6 +43,12 @@ source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # Muted Solarized-style suggestion color. Press Right Arrow or End to accept.
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
+# Use VS Code for commands that respect standard editor environment variables.
+if command -v code >/dev/null 2>&1; then
+  export EDITOR='code --wait'
+  export VISUAL="$EDITOR"
+fi
+
 # Keep machine- or work-specific settings out of Git.
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
