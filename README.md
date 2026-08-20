@@ -80,6 +80,18 @@ relative to `$HOME`, then rerun `./bootstrap.sh`. Example:
 home/.gitconfig -> ~/.gitconfig
 ```
 
+### Java versions
+
+The setup installs JDK 21 and 25, registers both with jEnv, and selects Java 21
+globally. Pin a repository to Java 25 from its root:
+
+```sh
+jenv local 25
+```
+
+This creates `.java-version`. Use `jenv local 21` to switch the repository back,
+or `jenv local --unset` to inherit the global default.
+
 ### Add a shell alias
 
 Keep interactive shortcuts in `home/.config/zsh/aliases.zsh` rather than

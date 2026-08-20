@@ -68,6 +68,24 @@ if [ "$skip_brew" = false ]; then
   fi
 fi
 
+if command -v brew >/dev/null 2>&1; then
+  for java_version in 21 25; do
+    java_home="$(brew --prefix "openjdk@$java_version")/libexec/openjdk.jdk/Contents/Home"
+    if [ "$dry_run" = true ]; then
+      printf 'Would add JDK to jEnv: %s\n' "$java_home"
+    elif command -v jenv >/dev/null 2>&1; then
+      JENV_SKIP=true jenv add "$java_home" >/dev/null
+    fi
+  done
+
+  if [ "$dry_run" = true ]; then
+    printf '%s\n' "Would set jEnv global Java version to 21"
+  elif command -v jenv >/dev/null 2>&1; then
+    jenv global 21
+    jenv enable-plugin export >/dev/null 2>&1 || true
+  fi
+fi
+
 find "$home_dir" -type f ! -name '.DS_Store' ! -name '.zcompdump*' ! -name 'id_*' | while IFS= read -r source; do
   relative=${source#"$home_dir"/}
   target="$HOME/$relative"

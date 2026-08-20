@@ -10,6 +10,13 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%F{blue}-- %d --%f'
 zstyle ':completion:*:warnings' format '%F{red}no matches found%f'
 
+# ---- Java -------------------------------------------------------------------
+
+if [[ -d "$HOME/.jenv" ]]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
+
 # ---- History ----------------------------------------------------------------
 
 HISTFILE="$HOME/.zsh_history"
